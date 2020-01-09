@@ -27,7 +27,7 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
   * month before the fire – October *, 
   * month after the fire – December *
   
-****only needed for the Extra***
+****only needed for the Extra task***
 
 * There are 2 Landsat Surface Temperature images:
   * start of the fire – November
