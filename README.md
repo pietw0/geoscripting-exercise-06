@@ -70,10 +70,10 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
 * When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf)(page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
 
 
-### Bonus
-***Only attempt the bonus if you finished and tested the above without errors***
+### Extra
+***Only attempt the extra if you finished and tested the above without errors***
 
-As a bonus exercise, calculate the size of the area affected by the fire using the Landsat scenes from October and December and the severity. You can use the Normalized Burn Ratio (NBR) index, which is calculated using the following formula:
+As a extra exercise, calculate the size of the area affected by the fire using the Landsat scenes from October and December and the severity. You can use the Normalized Burn Ratio (NBR) index, which is calculated using the following formula:
 
 <p align="center">
   <img src="https://github.com/geoscripting-innovation/Exercise4-solution/blob/master/images/Formula_NBR.png"
