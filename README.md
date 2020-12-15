@@ -21,7 +21,7 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 
 ### Data
 * The Landsat data can be found [here](https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1).
-* There are Landsat Surface Reflectance scenes of 4 dates: 
+* There are Landsat Surface Reflectance scenes of 4 dates (in subdirectories): 
   * start of the fire - November, 
   * end of the fire – November,
   * month before the fire – October *, 
@@ -29,7 +29,7 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
   
 ****only needed for the Extra task***
 
-* There are 2 Landsat Surface Temperature images:
+* There are 2 Landsat Surface Temperature images (suffixed with `_ST.tif`):
   * start of the fire – November
   * end of the fire – November
 
@@ -68,7 +68,7 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
  
 * The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `projectRaster` and `crop`, to be able to calculate the temperatures for the active fires. 
 
-* When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf)(page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
+* When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
 
 
 ### Extra
