@@ -33,7 +33,7 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
   * start of the fire – November
   * end of the fire – November
 
-* Use the product guide of [Landsat 8](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf) (see Section 5, page 13) and [Landsat 7](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1370_L4-7_SurfaceReflectance-LEDAPS_ProductGuide-v2.pdf)(see Section 4, page 8 ) to figure out the dates of the Landsat scenes.
+* Use the product guide of [Landsat 8](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf) (see Section 5, page 13) and [Landsat 7](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1370_L4-7_SurfaceReflectance-LEDAPS_ProductGuide-v2.pdf) (see Section 4, page 8) to figure out the dates of the Landsat scenes.
 
 * Use [this overview](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products) to find the correct bands for the fire detection area for each sensor.
 
@@ -61,7 +61,8 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
     * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/) 
     * Label the elements of the legend appropriately
-    * Add a title to the plot with details about the purpose of the map   
+    * Add a title to the plot with details about the purpose of the map
+    * Save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
     * If the visualization is behaving strange, use `dev.off()` to clear the plot memory
     * ***Extra***: add the area of the fire to the plot title, calculated using the raster resolution and fire pixel count
  
