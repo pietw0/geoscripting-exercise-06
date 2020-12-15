@@ -20,7 +20,7 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
 * The temperature of the detected active fires can be extracted from the Surface Temperature product.
 
 ### Data
-* The Landsat can be found [here](https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1).
+* The Landsat data can be found [here](https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1).
 * There are Landsat Surface Reflectance scenes of 4 dates: 
   * start of the fire - November, 
   * end of the fire – November,
@@ -33,7 +33,7 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
   * start of the fire – November
   * end of the fire – November
 
-* Use the product guide of [Landsat 8](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf) (see Section 5, page 13) and [Landsat 7](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1370_L4-7_SurfaceReflectance-LEDAPS_ProductGuide-v2.pdf) (see Section 4, page 8) to figure out the dates of the Landsat scenes.
+* Use [this USGS page](https://www.usgs.gov/faqs/what-naming-convention-landsat-collections-level-1-scenes?qt-news_science_products=0#qt-news_science_products) to figure out the dates of the Landsat scenes.
 
 * Use [this overview](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products) to find the correct bands for the fire detection area for each sensor.
 
