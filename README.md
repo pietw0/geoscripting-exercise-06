@@ -15,7 +15,7 @@ Design a processing chain for detecting **active fires** using freely available 
     <img src="https://github.com/geoscripting-2020/Exercise4-starter/blob/master/images/Formula_active_fire.png"
 </p> 
 
-where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of band that has 760-900 μm. 
+where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of band that has 760-900 nm. 
 
 * The temperature of the detected active fires can be extracted from the Surface Temperature product.
 
