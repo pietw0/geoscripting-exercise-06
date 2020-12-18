@@ -15,13 +15,13 @@ Design a processing chain for detecting **active fires** using freely available 
     <img src="https://github.com/geoscripting-2020/Exercise4-starter/blob/master/images/Formula_active_fire.png"
 </p> 
 
-where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of band that has 760-900 μm. 
+where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of band that has 760-900 nm. 
 
 * The temperature of the detected active fires can be extracted from the Surface Temperature product.
 
 ### Data
-* The Landsat can be found [here](https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1).
-* There are Landsat Surface Reflectance scenes of 4 dates: 
+* The Landsat data can be found [here](https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1).
+* There are Landsat Surface Reflectance scenes of 4 dates (in subdirectories): 
   * start of the fire - November, 
   * end of the fire – November,
   * month before the fire – October *, 
@@ -29,11 +29,11 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
   
 ****only needed for the Extra task***
 
-* There are 2 Landsat Surface Temperature images:
+* There are 2 Landsat Surface Temperature images (suffixed with `_ST.tif`):
   * start of the fire – November
   * end of the fire – November
 
-* Use the product guide of [Landsat 8](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf) (see Section 5, page 13) and [Landsat 7](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1370_L4-7_SurfaceReflectance-LEDAPS_ProductGuide-v2.pdf)(see Section 4, page 8 ) to figure out the dates of the Landsat scenes.
+* Use [this USGS page](https://www.usgs.gov/faqs/what-naming-convention-landsat-collections-level-1-scenes?qt-news_science_products=0#qt-news_science_products) to figure out the dates of the Landsat scenes.
 
 * Use [this overview](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products) to find the correct bands for the fire detection area for each sensor.
 
@@ -44,7 +44,7 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
 *	All output should be saved in a folder called `output`, created in your script. As such, there should be no `output` folder in your Git repository.
 
 
-*	Visualize the two scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
+*	Visualize the two Landsat Surface Temperature scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
 
 *	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`.
 
@@ -61,13 +61,14 @@ where ρi is reflectance of band that has 2080-2350 μm; ρj is reflectance of b
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
     * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/) 
     * Label the elements of the legend appropriately
-    * Add a title to the plot with details about the purpose of the map   
+    * Add a title to the plot with details about the purpose of the map
+    * Save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
     * If the visualization is behaving strange, use `dev.off()` to clear the plot memory
     * ***Extra***: add the area of the fire to the plot title, calculated using the raster resolution and fire pixel count
  
 * The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `projectRaster` and `crop`, to be able to calculate the temperatures for the active fires. 
 
-* When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf)(page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
+* When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
 
 
 ### Extra
