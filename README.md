@@ -39,18 +39,21 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 
 
 ### Requirements
-*	The data should be downloaded in your script, and saved in a folder called `data`, also created in your script. As such, there should be no `data` folder in your Git repository.
+- Project structure:
+    -	The data should be downloaded in your script, and saved in a folder called `data`, also created in your script. As such, there should be no `data` folder in your Git repository.
 
-*	All output should be saved in a folder called `output`, created in your script. As such, there should be no `output` folder in your Git repository.
+    -	All output should be saved in a folder called `output`, created in your script. As such, there should be no `output` folder in your Git repository.
 
+- Task 1:
+    -	Visualize the two Landsat Surface Temperature scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
 
-*	Visualize the two Landsat Surface Temperature scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
+- Task 2:
+    -	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`.
 
-*	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`.
+    -	Plot the active fires at both moments in one map, with a title and legend indicating the date of the fires. Save it as `Active_fires_California.png` in the `output` folder.
 
-*	Plot the active fires at both moments in one map, with a title and legend indicating the date of the fires. Save it as `Active_fires_California.png` in the `output` folder.
-
-*	Calculate the average and maximum temperature (in Celsius) of the active fires for each moment using the Surface Temperature images. Assign them to the following variable names: `T_start_mean`, `T_start_max`, `T_end_mean`, `T_end_max`.
+- Task 3:
+    -	Calculate the average and maximum temperature (in Celsius) of the active fires for each moment using the Surface Temperature images. Assign them to the following variable names: `T_start_mean`, `T_start_max`, `T_end_mean`, `T_end_max`.
 
 
 ### Hints
@@ -59,7 +62,7 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 *	Be careful with reading raster layers, check intermediate results (`fire_start[[1]]` might not be `sr_band1`, as you expect).
 
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
-    * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/) 
+    * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/)) 
     * Label the elements of the legend appropriately
     * Add a title to the plot with details about the purpose of the map
     * Save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
