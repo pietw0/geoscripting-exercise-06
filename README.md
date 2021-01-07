@@ -45,7 +45,7 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
     -	All output should be saved in a folder called `output`, created in your script. As such, there should be no `output` folder in your Git repository.
 
 - Task 1:
-    -	Visualize the two Landsat Surface Temperature scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
+    -	Visualize the two Landsat Surface Reflection scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
 
 - Task 2:
     -	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`.
