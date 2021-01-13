@@ -12,7 +12,7 @@ Design a processing chain for detecting **active fires** using freely available 
 * The active fires can be detected using the following formula using Surface Reflectance in the specified spectral channels:
 
 <p align="center">
-    <img src="https://github.com/geoscripting-2021/Exercise_4_Starter/blob/master/images/Formula_active_fire.png"
+    <img src="./images/Formula_active_fire.png"
 </p> 
 
 where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of band that has 760-900 nm. 
@@ -80,13 +80,13 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 As a extra exercise, calculate the size of the area affected by the fire using the Landsat scenes from October and December and the severity. You can use the Normalized Burn Ratio (NBR) index, which is calculated using the following formula:
 
 <p align="center">
-  <img src="https://github.com/geoscripting-2021/Exercise_4_Starter/blob/master/images/Formula_NBR.png"
+  <img src="./images/Formula_NBR.png"
 </p> 
 
 The formula is similar to a normalized difference vegetation index (NDVI), except that it uses near-infrared (NIR) and shortwave-infrared (SWIR) portions of the electromagnetic spectrum. By comparing the NBR values from before and after the fire, we obtain information about the extent and severity of the fire event. To calculate the difference NBR, you subtract the post-fire NBR raster from the pre-fire NBR raster as follows:
 
 <p align="center">
-  <img src="https://github.com/geoscripting-2021/Exercise_4_Starter/blob/master/images/Formula_delta_NBR.png"
+  <img src="./images/Formula_delta_NBR.png"
 </p> 
 
 
