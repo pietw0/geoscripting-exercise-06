@@ -61,6 +61,18 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 
 *	Be careful with reading raster layers, check intermediate results (`fire_start[[1]]` might not be `sr_band1`, as you expect).
 
+Here is a code snippet for selecting the right data:
+`#Load data
+data_folder <- "./data"
+Landsat_images <- list.files(data_folder, pattern = glob2rx('L*'), full.names=TRUE)
+
+fire_start <- stack(list.files(Landsat_images[3], pattern = glob2rx('*band*.tif'), full.names=TRUE))
+fire_end <- stack(list.files(Landsat_images[6], pattern = glob2rx('*band*.tif'), full.names=TRUE))
+
+temp_start <- raster(Landsat_images[1])
+temp_end <- raster(Landsat_images[5])
+`
+
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
     * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/)) 
     * Label the elements of the legend appropriately
