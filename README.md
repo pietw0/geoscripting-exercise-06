@@ -25,10 +25,8 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
   * start of the fire - November, 
   * end of the fire – November,
   * month before the fire – October *, 
-  * month after the fire – December *
+  * month after the fire – December *  (*only needed for the Extra task)
   
-****only needed for the Extra task***
-
 * There are 2 Landsat Surface Temperature images (suffixed with `_ST.tif`):
   * start of the fire – November
   * end of the fire – November
@@ -41,28 +39,35 @@ where ρi is reflectance of band that has 2080-2350 nm; ρj is reflectance of ba
 ### Requirements
 - Project structure:
     -	The data should be downloaded in your script, and saved in a folder called `data`, also created in your script. As such, there should be no `data` folder in your Git repository.
-
     -	All output should be saved in a folder called `output`, created in your script. As such, there should be no `output` folder in your Git repository.
-
-- Task 1:
-    -	Visualize the two Landsat Surface Reflection scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
-
-- Task 2:
-    -	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`.
-
-    -	Plot the active fires at both moments in one map, with a title and legend indicating the date of the fires. Save it as `Active_fires_California.png` in the `output` folder.
-
-- Task 3:
-    -	Calculate the average and maximum temperature (in Celsius) of the active fires for each moment using the Surface Temperature images. Assign them to the following variable names: `T_start_mean`, `T_start_max`, `T_end_mean`, `T_end_max`.
-
-
-### Hints
-
-
-*	Be careful with reading raster layers, check intermediate results (`fire_start[[1]]` might not be `sr_band1`, as you expect).
-
-Here is a code snippet for selecting the right data:
+    
+     Here is example code block that you can use to get started:
+    
     ```{r}
+    #Load library
+    library(rgdal)
+    library(raster)
+    
+    #Source external functions
+    source("./R/detectFires.R") #create here your own function
+    source("./R/calculateNBR.R") #create here your own function
+    
+    #Create data and output folders and download data from URL
+    data_URL <- "https://www.dropbox.com/sh/ldetgkuffwmky0z/AABuINXJUIS6ZXYIVYOcx2qna?dl=1"
+    data_folder <- "./data"
+    
+    if (!dir.exists(data_folder)){
+      dir.create(data_folder)}
+    
+    if (!dir.exists('output')) {
+      dir.create('output')
+    }
+    
+    if (!file.exists('./data/data.zip')) {
+      download.file(url = data_URL, destfile = './data/data.zip', method = 'auto')
+      unzip('./data/data.zip', exdir = './data')
+    }
+    
     #Load data
     Landsat_images <- list.files(data_folder, pattern = glob2rx('L*'), full.names=TRUE)
     
@@ -72,18 +77,57 @@ Here is a code snippet for selecting the right data:
     temp_start <- raster(Landsat_images[1])
     temp_end <- raster(Landsat_images[5])
     ```
+
+- Task 1:
+    -	Visualize the two Landsat Surface Temperature scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the two images separately in output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the scene folder (i.e. `LC08044322018.......png`).
+
+- Task 2:
+    -	Create a function called `detectFires`, in a file called `detectFires.R` in the `R` folder. It should calculate active fires using the above formula, for both the start and end image. You will source and use this function in your `main.R`. ***Important*** here is for Landsat 7 and 8 band selection. Use [this overview](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products) to find the correct bands for the fire detection area for each sensor. To detect the active fires the NIR and SWIR2 band have to be selected for both satellites. 
+
+    -	Plot the active fires at both moments in one map, with a title and legend indicating the date of the fires. Save it as `Active_fires_California.png` in the `output` folder.
+
+    Here is a code block that can help and feel free to adjust this to your needs:
+
+    ```{r}
+    #creating a map of the active fires in California
+    active_fire_California <- active_fire_start + 2 * active_fire_end
+    active_fire_California[active_fire_California == 0] <- NA
+    
+    png(filename="output/Active_fires_California.png", width=800, height=500)
+    plot(active_fire_California, legend = FALSE, col = c("#FFA500","#FF4500"))
+    legend("bottomright", legend = c("8th November", "16th November"), fill = c("#FFA500","#FF4500"))
+    title(main = "Active fires detected in Northern California at Camp Fire")
+    dev.off()
+    ```
+- Task 3:
+    -	Calculate the average and maximum temperature (in Celsius) of the active fires for each moment using the Surface Temperature images. Assign them to the following variable names: `T_start_mean`, `T_start_max`, `T_end_mean`, `T_end_max`.
+    - When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
+    - The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `projectRaster` and `crop`, to be able to calculate the temperatures for the active fires.
+    - see here for an example code snippet:
+    
+    ```{r}
+    #Visualizing the temperature data
+    plot(temp_start)
+    plot(temp_end)
+    
+    #Reprojecting and cropping the temperature rasters to fit the active fire data
+    temp_start_reproj <- projectRaster(temp_start, active_fire_start)
+    temp_start_AOI <- crop(temp_start_reproj, extent(active_fire_start))
+    temp_start_AOI <- (temp_start_AOI * 0.1) - 273.15
+    plot(temp_start_AOI)
+    ```
+    
+### Hints
+
+*	Be careful with reading raster layers, check intermediate results (`fire_start[[1]]` might not be `sr_band1`, as you expect).
+
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
     * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/)) 
     * Label the elements of the legend appropriately
     * Add a title to the plot with details about the purpose of the map
     * Save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
     * If the visualization is behaving strange, use `dev.off()` to clear the plot memory
-    * ***Extra***: add the area of the fire to the plot title, calculated using the raster resolution and fire pixel count
  
-* The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `projectRaster` and `crop`, to be able to calculate the temperatures for the active fires. 
-
-* When calculating the temperature in Celsius have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to understand the pixel values. *Extra tip*: use `na.rm = True`
-
 
 ### Extra
 ***Only attempt the extra if you finished and tested the above without errors***
