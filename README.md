@@ -72,7 +72,6 @@ Here is a code snippet for selecting the right data:
     temp_start <- raster(Landsat_images[1])
     temp_end <- raster(Landsat_images[5])
     ```
-
 *	When creating a map, the title and the legend of the plot are key to understanding the purpose of the map, without leaving room for interpretation. 
     * Make sure you plot your output image with a legend for categorical data ([a simple example](https://biologyforfun.wordpress.com/2013/03/11/taking-control-of-the-legend-in-raster-in-r/)) 
     * Label the elements of the legend appropriately
