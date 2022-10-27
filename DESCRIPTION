@@ -1,9 +1,0 @@
-Package: continuousfeedback
-Title: Description file exercise 4
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: Add you dependencies to imports to install them on the virtual machine of Travis CI
-Imports:
- testthat,
- rgdal, 
- raster
- 
