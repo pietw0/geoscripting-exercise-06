@@ -13,7 +13,7 @@
 **.[rR][dD][aA]
 
 # Zip files
-**.[zZ][iI][pP]]
+**.[zZ][iI][pP]
 **.7[zZ]
 **.[rR][aA][rR]
 
@@ -22,4 +22,9 @@
 **.[jJ][pP][gG]
 **.[jJ][pP][eE][gG]
 **.[tT][iI][fF]
+**.[tT][iI][fF][fF]
 **.[gG][iI][fF]
+
+# directories
+data
+output
