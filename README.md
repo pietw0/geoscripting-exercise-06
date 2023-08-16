@@ -5,7 +5,7 @@ Wildfires have been a hot topic over the last years, with large forested areas b
 
 For more than a decade, satellite remote sensing *active fire data* has been used to inform fire management systems. It can aid in fire containment and suppression, but can also be used for assessment of fire-affected areas that will need stabilization and restoration efforts.
 
-In this exercise, you will detect active wildfires and the extent of fire damage using Landsat imagery. You will design a processing chain for detecting **active fires** using freely available Landsat 8 and Landsat 7 images, and provide information about the temperature of these fires.
+In this exercise, you will detect active wildfires and the extent of fire damage using [Landsat imagery](https://www.usgs.gov/landsat-missions/landsat-7). You will design a processing chain for detecting **active fires** using freely available Landsat 8 and Landsat 7 images, and provide information about the temperature of these fires.
 
 
 ## Data
@@ -19,8 +19,11 @@ In this exercise, you will detect active wildfires and the extent of fire damage
   * start of the fire - November
   * end of the fire - November
 * Use [this USGS page](https://www.usgs.gov/faqs/what-naming-convention-landsat-collections-level-1-scenes?qt-news_science_products=0#qt-news_science_products) to figure out the dates of the Landsat scenes.
-* Use [this overview](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products) to find the correct bands for the fire detection area for each sensor.
+* You can find an overview of the Landsat bands [here](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). You can also use the table below of the relevant bands for the fire detection.
 
+<p align="center">
+    <img src="./images/Table_fire_detection_bands.PNG"
+</p>
 
 ## Formula
 Active fires can be detected using the following formula using the Surface Reflectance in the specified spectral channels:
@@ -33,7 +36,7 @@ where ρi is the reflectance of the band that has 2080-2350 nm; ρj is the refle
 
 
 ## Requirements
-- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Plot them in RGB. Pay attention to correctly identifying which [band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`).
+- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Each scene is comprised of 6 or 7 layers, corresponding to the Landsat 7 and 8 optical bands (ranging from 0.43 µm to 2.35 µm). Plot the scene in true-color RGB, the visualization should be the result of stacking the red, green, and blue bands. Pay attention to correctly identifying [which band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`).
 
 - Task 2: Create a function called `detectFires` in a file called `detectFires.R` in the `R` folder. This function should detect active fires using the formula as provided above. The function has to be usable for both the start and end image. Source and use this function in your `main.R` script. Plot the active fires at both moments in one map with an informative title. Add a legend to indicate which color on the map corresponds to which date. Save the map as `Active_fires_California.png` in the `output` folder.
 
@@ -52,8 +55,11 @@ where ρi is the reflectance of the band that has 2080-2350 nm; ρj is the refle
 * You can save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
 * If the visualization is behaving strange, use `dev.off()` to clear the plot memory and retry.
 * The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `project` and `crop` to be able to calculate the temperatures for the active fires for task 3. 
-* When calculating the temperature in Celsius, have a look at the [Surface Temperature product guide](https://prd-wret.s3-us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to understand the pixel values. *Extra tip*: use `na.rm = TRUE`.
+* Use the equation below when calculating the surface temperature in Celsius. Have a look at the [Surface Temperature product guide](https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to use the appropriate scale factor. *Extra tip*: use `na.rm = TRUE`.
 
+<p align="center">
+  <img src="./images/Formula_surface_temperature.PNG"
+</p> 
 
 ## Extra (only attempt if you finished and tested the above without errors)
 Calculate the total size of the area affected by the fire using the Landsat scenes from October and December, combined with a severity classification. We will use the Normalized Burn Ratio (NBR) index, which is calculated using the following formula:
