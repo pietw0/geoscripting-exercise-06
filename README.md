@@ -11,8 +11,8 @@ In this exercise, you will detect active wildfires and the extent of fire damage
 ## Data
 * The Landsat data can be found [here](https://github.com/GeoScripting-WUR/IntroToRaster/releases/download/landsat-data/Geoscripting_Exercise_4.zip).
 * There are Landsat Surface Reflectance scenes of 4 dates (placed in subdirectories): 
-  * start of the fire - November, 
-  * end of the fire - November,
+  * start of the fire - November (Landsat 8 scene comprised of 7 bands), 
+  * end of the fire - November (Landsat 7 scene comprised of 6 bands),
   * month before the fire - October (only needed for the extra task!), 
   * month after the fire - December (only needed for the extra task!)
 * There are 2 Landsat Surface Temperature images (suffixed with `_ST.tif`):
@@ -36,7 +36,11 @@ where ρi is the reflectance of the band that has 2080-2350 nm; ρj is the refle
 
 
 ## Requirements
-- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Each scene is comprised of 6 or 7 layers, corresponding to the Landsat 7 and 8 optical bands (ranging from 0.43 µm to 2.35 µm). Plot the scene in true-color RGB, the visualization should be the result of stacking the red, green, and blue bands. Pay attention to correctly identifying [which band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`).
+- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Plot the scene in true-color RGB, the visualization should be the result of stacking the red, green, and blue bands. Pay attention to correctly identifying [which band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Your visualization of the start of the fire should look like the image below. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`).
+
+<p align="center">
+    <img src="./images/L8_fireStart_visualization.png"
+</p> 
 
 - Task 2: Create a function called `detectFires` in a file called `detectFires.R` in the `R` folder. This function should detect active fires using the formula as provided above. The function has to be usable for both the start and end image. Source and use this function in your `main.R` script. Plot the active fires at both moments in one map with an informative title. Add a legend to indicate which color on the map corresponds to which date. Save the map as `Active_fires_California.png` in the `output` folder.
 
