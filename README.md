@@ -1,4 +1,4 @@
-# Exercise 4: Introduction to raster
+# Exercise 5: Introduction to raster
 
 ## Your task
 Wildfires have been a hot topic over the last years, with large forested areas being affected. The area of Butte County, Northern California, was devastated by a wildfire called [Camp Fire](https://en.wikipedia.org/wiki/Camp_Fire_(2018)) that started on November 8th 2018. The Camp Fire was the deadliest and most destructive wildfire in California's history, and lasted until after 16th November 2018.
