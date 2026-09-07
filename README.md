@@ -36,7 +36,8 @@ where ρi is the reflectance of the band that has 2080-2350 nm; ρj is the refle
 
 
 ## Requirements
-- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Plot the scene in true-color RGB, the visualization should be the result of stacking the red, green, and blue bands. Pay attention to correctly identifying [which band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Your visualization of the start of the fire should look like the image below. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`).
+- Task 1: Visualize the two Landsat Surface Reflectance scenes from November to become familiar with them. Plot the scene in true-color RGB, the visualization should be the result of stacking the red, green, and blue bands. Pay attention to correctly identifying [which band is which](https://www.usgs.gov/faqs/what-are-best-landsat-spectral-bands-use-my-research?qt-news_science_products=0#qt-news_science_products). Have a look at the `stretch` parameter. Your visualization of the start of the fire should look like the image below. Save the resulting two images separately in the output folder as `$FOLDERNAME$.png`, where `$FOLDERNAME$` is the name of the corresponding scene folder (i.e. `LC08044322018.......png`). 
+Getting a timeout error when downloading the data? Remember to always check [stackoverflow](https://stackoverflow.com/questions/35282928/how-do-i-set-a-timeout-for-utilsdownload-file-in-r) ;).
 
 <p align="center">
     <img src="./images/L8_fireStart_visualization.png"
