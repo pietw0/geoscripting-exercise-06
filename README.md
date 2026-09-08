@@ -58,7 +58,7 @@ Getting a timeout error when downloading the data? Remember to always check [sta
     * Label the elements of the legend appropriately.
     * Add a title to the plot with details about the purpose of the map.
 * You can save plots as PNG with `png` (check `?png`). Example: `png(filename="output/[FILENAME].png", width=800, height=500)`.
-* If the visualization is behaving strange, use `dev.off()` to clear the plot memory and retry.
+* If the visualization is not showing up or behaving strangely, use `dev.off()` to clear the plot memory and retry.
 * The Surface Temperature products have a different projection and extent than the Surface Reflectance product. Use the functions `project` and `crop` to be able to calculate the temperatures for the active fires for task 3. 
 * Use the equation below when calculating the surface temperature in Celsius. Have a look at the [Surface Temperature product guide](https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/LSDS-1330-LandsatSurfaceTemperature_ProductGuide-v2.pdf) (page 9) to use the appropriate scale factor. *Extra tip*: use `na.rm = TRUE`.
 
